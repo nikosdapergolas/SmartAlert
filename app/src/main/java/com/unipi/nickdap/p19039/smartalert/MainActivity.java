@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     //Each intent represents the Activities that I will open
-    Intent intent;
+    Intent intent,intent2;
 
     EditText email,password;
     FirebaseAuth mAuth;
@@ -37,52 +37,65 @@ public class MainActivity extends AppCompatActivity {
 
     public void signin(View view)
     {
-        mAuth.signInWithEmailAndPassword(email.getText().toString().trim(),password .getText().toString().trim())
-                // Using a Lambda expression
-                .addOnCompleteListener((task)->{
-                    if(task.isSuccessful())
-                    {
-                        showMessage("Success!","Welcome to the smart Alert app!!");
+        if(email.getText().toString().equals("") || password.getText().toString().equals(""))
+        {
+            showMessage("Error!","You cannot leave Email or Password blank");
+        }
+        else
+        {
+            mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
+                    // Using a Lambda expression
+                    .addOnCompleteListener((task) -> {
+                        if (task.isSuccessful()) {
+                            showMessage("Success!", "Welcome to the smart Alert app!!");
 
-                        intent = new Intent(this,MainActivity2.class);
-                        startActivity(intent);
-                    }
-                    else
-                    {
-                        showMessage("Error",task.getException().getLocalizedMessage());
-                    }
-                });
+                            intent = new Intent(this, MainActivity2.class);
+                            startActivity(intent);
+                        } else {
+                            showMessage("Error", task.getException().getLocalizedMessage());
+                        }
+                    });
+        }
     }
 
     public void signup(View view)
     {
-        mAuth.createUserWithEmailAndPassword(email.getText().toString().trim(),password.getText().toString().trim())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
+        if(email.getText().toString().equals("") || password.getText().toString().equals(""))
+        {
+            showMessage("Error!","You cannot leave Email or Password blank");
+        }
+        else
+        {
+            mAuth.createUserWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>()
                     {
-                        // Έχω 1 μόνο Listener και επιλέγω τα αποτελέσματα που μου δίνει με τη βοήθεια του task
-                        // ( Δηλαδή της παραμέτρου της συνάρτησης onComplete )
-                        if(task.isSuccessful())
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task)
                         {
-                            showMessage("Success!","User Authentication was successfull");
-                            // Μπορώ απο εκεί και ύστερα να έχω το όνομα του χρήστη από την βάση.
-                            // Η Firebase χρησιμοποιεί token σε AppLevel
+                            // Έχω 1 μόνο Listener και επιλέγω τα αποτελέσματα που μου δίνει με τη βοήθεια του task
+                            // ( Δηλαδή της παραμέτρου της συνάρτησης onComplete )
+                            if (task.isSuccessful())
+                            {
+                                showMessage("Success!", "User Authentication was successfull");
+                                // Μπορώ απο εκεί και ύστερα να έχω το όνομα του χρήστη από την βάση.
+                                // Η Firebase χρησιμοποιεί token σε AppLevel
 
-                            // Πως μπορώ να δείξω το Id του χρήστη που έκανε signup ή signin?
-                            //showMessage("User Id:",mAuth.getUid());
+                                // Πως μπορώ να δείξω το Id του χρήστη που έκανε signup ή signin?
+                                //showMessage("User Id:",mAuth.getUid());
+                                intent2 = new Intent(MainActivity.this, MainActivity3.class);
+                                startActivity(intent2);
+                            }
+                            else
+                            {
+                                // Αυτό το else πετάει το σωστό μήνυμα που πρέπει να δει ο χρήστης
+                                // Χρησιμοποιώντας το ".getException().getLocalizedMessage()" :
+                                // πιάνω όλα τα πιθανά errors, και όχι μόνο αυτό, δείχνω μάλιστα
+                                // και το κατάλληλο μήνυμα στον χρήστη
+                                showMessage("Error!", task.getException().getLocalizedMessage());
+                            }
                         }
-                        else
-                        {
-                            // Αυτό το else πετάει το σωστό μήνυμα που πρέπει να δει ο χρήστης
-                            // Χρησιμοποιώντας το ".getException().getLocalizedMessage()" :
-                            // πιάνω όλα τα πιθανά errors, και όχι μόνο αυτό, δείχνω μάλιστα
-                            // και το κατάλληλο μήνυμα στον χρήστη
-                            showMessage("Error!",task.getException().getLocalizedMessage());
-                        }
-                    }
-                });
+                    });
+        }
     }
 
     void showMessage(String title, String message){
