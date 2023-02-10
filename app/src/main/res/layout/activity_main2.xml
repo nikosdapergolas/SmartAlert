@@ -6,13 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="138dp"
+        android:layout_marginBottom="139dp"
+        android:onClick="read"
+        android:text="Read last urgent message"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="202dp"
-        android:text="after sign in page"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="4dp"
+        android:text="User UI"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="230dp"
+        android:onClick="submit"
+        android:text="submit an emergency incident"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
