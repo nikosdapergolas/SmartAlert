@@ -6,21 +6,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     //Each intent represents the Activities that I will open
-    Intent intent,intent2;
+    Intent intent,intent2,intent3;
 
     EditText email,password;
+
     FirebaseAuth mAuth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference collectionReference = db.collection("Users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +60,38 @@ public class MainActivity extends AppCompatActivity {
                     // Using a Lambda expression
                     .addOnCompleteListener((task) -> {
                         if (task.isSuccessful()) {
-                            showMessage("Success!", "Welcome to the smart Alert app!!");
+                            Toast.makeText(MainActivity.this,"Welcome to the smart Alert app!!",Toast.LENGTH_LONG).show();
 
-                            intent = new Intent(this, MainActivity2.class);
-                            startActivity(intent);
+//                            String userRole, userId;
+//                            DocumentSnapshot documentSnapshot = collectionReference.document(mAuth.getUid()).get();
+                            collectionReference.document(mAuth.getUid()).get()
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            if(documentSnapshot.exists())
+                                            {
+                                                String userRole = documentSnapshot.getString("Role");
+
+                                                if(userRole.equals("User"))
+                                                {
+                                                    intent = new Intent(MainActivity.this, MainActivity2.class);
+                                                    startActivity(intent);
+                                                }
+                                                else
+                                                {
+                                                    intent3 = new Intent(MainActivity.this, MainActivity4.class);
+                                                    startActivity(intent3);
+                                                }
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            showMessage("Error", task.getException().getLocalizedMessage());
+                                        }
+                                    });
+
                         } else {
                             showMessage("Error", task.getException().getLocalizedMessage());
                         }
@@ -83,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
                                 // Πως μπορώ να δείξω το Id του χρήστη που έκανε signup ή signin?
                                 //showMessage("User Id:",mAuth.getUid());
                                 intent2 = new Intent(MainActivity.this, MainActivity3.class);
+                                Log.w("mAuth.getUid()",mAuth.getUid());
+                                intent2.putExtra("userID",mAuth.getUid());
                                 startActivity(intent2);
                             }
                             else
