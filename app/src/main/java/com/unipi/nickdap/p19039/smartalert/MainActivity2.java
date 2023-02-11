@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity2 extends AppCompatActivity {
 
+    MyTTS myTTS;
     FirebaseDatabase database;
     DatabaseReference reference;
 
@@ -26,6 +27,8 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        myTTS = new MyTTS(this);
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("messageForEverybody");
@@ -41,6 +44,7 @@ public class MainActivity2 extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                myTTS.speak(snapshot.getValue().toString());
                 showMessage("DB data change", snapshot.getValue().toString());
             }
 

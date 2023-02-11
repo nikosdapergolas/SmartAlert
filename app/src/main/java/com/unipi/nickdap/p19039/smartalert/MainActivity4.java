@@ -4,27 +4,44 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class MainActivity4 extends AppCompatActivity {
 
+    MyTTS myTTS;
     EditText data;
 
     FirebaseDatabase database;
     DatabaseReference reference;
 
+    Intent intent;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
+
+        myTTS = new MyTTS(this);
 
         data = findViewById(R.id.editTextTextPersonName4);
 
@@ -34,9 +51,33 @@ public class MainActivity4 extends AppCompatActivity {
 
     public void write(View view)
     {
-        reference.setValue(data.getText().toString());
+        if(data.getText().toString().equals(""))
+        {
+            showMessage("Error!","You cant leave the announcement empty");
+        }
+        else
+        {
+            reference.setValue(data.getText().toString());
 
-        showMessage("Success!!","The message has been successfully sent to everybody");
+            Map<String,String> emergency = new HashMap<String,String>();
+            emergency.put("Emergency",data.getText().toString());
+
+            // Δημιουργεί την πρώτη φορά collection με όνομα document, κάποιο τυχαίο
+            db.collection("EveryConfirmedEmergency").document().set(emergency)
+                    .addOnCompleteListener((task) ->
+                    {
+                        if (task.isSuccessful())
+                        {
+                            Toast.makeText(MainActivity4.this,"Emergency has been added successfully to the list of all emergencies so far",Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            showMessage("Error", task.getException().getLocalizedMessage());
+                        }
+                    });
+
+            showMessage("Success!!","The message has been successfully sent to everybody");
+        }
     }
 
     public void read(View view){
@@ -49,6 +90,7 @@ public class MainActivity4 extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                myTTS.speak(snapshot.getValue().toString());
                 showMessage("DB data change", snapshot.getValue().toString());
             }
 
@@ -68,6 +110,12 @@ public class MainActivity4 extends AppCompatActivity {
 
             }
         });//αυτό είναι για ανάγνωση τιμής μια φορά μόνο*/
+    }
+
+    public void seeAll(View view)
+    {
+        intent = new Intent(this, MainActivity6.class);
+        startActivity(intent);
     }
 
     void showMessage(String title, String message){
