@@ -8,6 +8,17 @@ public class Emergency {
     private String location = "";
     private String timestamp = "";
 
+    @Override
+    public String toString() {
+        return "Emergency{" +
+                "description='" + description + '\'' +
+                ", emergency='" + emergency + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longtitude='" + longtitude + '\'' +
+                ", location='" + location + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
+    }
 
     public Emergency(){
 

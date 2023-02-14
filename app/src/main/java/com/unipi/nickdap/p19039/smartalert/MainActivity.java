@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -105,6 +107,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void signup(View view)
     {
+        // Δήλωση του Broadcast receiver:
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction(Intent.ACTION_POWER_CONNECTED);
+//        filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+//        registerReceiver(new MyReceiver(),filter);
+
         if(email.getText().toString().equals("") || password.getText().toString().equals(""))
         {
             showMessage("Error!","You cannot leave Email or Password blank");
