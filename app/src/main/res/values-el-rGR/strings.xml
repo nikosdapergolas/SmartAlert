@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_enter_your_email">Εισάγετε το email σας</string>
+    <string name="hint_enter_your_password">Εισάγετε τον κωδικό σας</string>
+    <string name="btn_sign_in">Σύνδεση</string>
+    <string name="btn_sign_up">Εγγραφή</string>
+    <string name="prompt_password">Κωδικός πρόσβασης</string>
+    <string name="action_sign_in">Σύνδεση ή εγγραφή</string>
+    <string name="action_sign_in_short">Σύνδεση</string>
+    <string name="welcome">Καλωσήρθατε!</string>
+    <string name="invalid_username">Μη έγκυρο όνομα χρήστη</string>
+    <string name="invalid_password">Ο κωδικός πρόσβασης πρέπει να είναι πάνω απο 5 χαρακτήρες</string>
+    <string name="login_failed">Η προσπάθεια σύνδεσης απέτυχε</string>
+    <string name="Read_last_urgent_message">Διαβάστε το τελευταίο επείγον μήνυμα</string>
+    <string name="submit_an_emergency_incident">Υποβάλετε ένα επείγον περιστατικό</string>
+    <string name="Enter_your_Fullname">Εισάγετε το ονοματεπώνυμό σας</string>
+    <string name="Click_here_to_reveal_your_Location">Πατήστε εδώ για να αποκαλύψετε την τοποθεσία σας</string>
+    <string name="Click_here">Πατήστε εδώ</string>
+    <string name="Please_wait_for_the_app_to_gather_your_location">Παρακαλούμε περιμένετε έως ότου η εφαρμογή πάρει την τοποθεσία σας</string>
+    <string name="Save_and_go_back">Αποθήκευση και επιστροφή</string>
+    <string name="Location_not_taken_yet">Τοποθεσία: Δεν έχει ληφθεί ακόμα</string>
+    <string name="Write_an_emergency_Announcement">"Γράψτε μία επείγουσα ανακοίνωση "</string>
+    <string name="Announce">Ανακοινώστε</string>
+    <string name="Read_latest_announcement">Διαβάστε την τελευαία ανακοίνωση</string>
+    <string name="Click_here_to_see_all_the_submit_of_emergency_situations">Πατήστε εδώ για να δείτε όλα τα επείγοντα περιστατικά</string>
+    <string name="Submit_the_form_below_to_report_incident">Συμπληρώστε την παρακάτω φόρμα για να αναφέρετε ένα επικύνδυνο περιστατικό</string>
+    <string name="Select_a_type_of_dangerous_situation">Επιλέξτε το είδος του επικίνδυνου περιστατικού</string>
+    <string name="Description">Περιγραφή</string>
+    <string name="Submit">Υποβολή</string>
+    <string name="Show_most_important">"Εμφάνιση σημαντικότερων "</string>
+    <string name="Emergency_type">Είδος επείγοντος περιστατικού:</string>
+    <string name="Descryption2">Περιγραφή:</string>
+    <string name="location">Τοποθεσία:</string>
+    <string name="Timestamp">Ημερομηνία / Ώρα</string>
+</resources>

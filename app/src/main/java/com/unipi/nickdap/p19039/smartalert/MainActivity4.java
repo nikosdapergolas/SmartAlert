@@ -68,7 +68,8 @@ public class MainActivity4 extends AppCompatActivity {
                     {
                         if (task.isSuccessful())
                         {
-                            Toast.makeText(MainActivity4.this,"Emergency has been added successfully to the list of all emergencies so far",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity4.this,"Emergency has been added successfully to the list of all emergencies so far",Toast.LENGTH_SHORT).show();
+
                         }
                         else
                         {
@@ -76,7 +77,8 @@ public class MainActivity4 extends AppCompatActivity {
                         }
                     });
 
-            showMessage("Success!!","The message has been successfully sent to everybody");
+            Toast.makeText(MainActivity4.this,"Success! The message has been successfully sent to everybody",Toast.LENGTH_SHORT).show();
+//            showMessage("Success!!","The message has been successfully sent to everybody");
         }
     }
 
@@ -115,6 +117,7 @@ public class MainActivity4 extends AppCompatActivity {
     public void seeAll(View view)
     {
         intent = new Intent(this, MainActivity6.class);
+        intent.putExtra("most_important_only","false");
         startActivity(intent);
     }
 

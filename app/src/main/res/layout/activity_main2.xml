@@ -13,7 +13,7 @@
         android:layout_marginTop="138dp"
         android:layout_marginBottom="139dp"
         android:onClick="read"
-        android:text="Read last urgent message"
+        android:text="@string/Read_last_urgent_message"
         app:layout_constraintBottom_toTopOf="@+id/button8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
         android:layout_marginTop="4dp"
-        android:text="User UI"
+        android:text="@string/user_ui"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

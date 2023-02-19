@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartAlert</string>
+    <string name="app_name" translatable="false">SmartAlert</string>
     <string-array name="dangers">
         <item>Fire</item>
         <item>Flood</item>
@@ -7,8 +7,37 @@
         <item>Tsunami</item>
     </string-array>
 
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
+    <string name="hint_enter_your_email">Enter your e-mail</string>
+    <string name="hint_enter_your_password">Enter your password</string>
+    <string name="btn_sign_in">sign-in</string>
+    <string name="btn_sign_up">sign-up</string>
+    <string name="user_ui" translatable="false">User ui</string>
+    <string name="Read_last_urgent_message">Read last urgent message</string>
+    <string name="submit_an_emergency_incident">submit an emergency incident</string>
+    <string name="Enter_your_Fullname">Enter your Fullname</string>
+    <string name="Click_here_to_reveal_your_Location">Click here to reveal your Location</string>
+    <string name="Click_here">Click here</string>
+    <string name="Please_wait_for_the_app_to_gather_your_location">Please wait for the app to gather your location</string>
+    <string name="Save_and_go_back">Save and go back</string>
+    <string name="Location_not_taken_yet">Location: not taken yet</string>
+    <string name="Write_an_emergency_Announcement">Write an emergency Announcement</string>
+    <string name="Announce">Announce</string>
+    <string name="Read_latest_announcement">Read latest announcement</string>
+    <string name="Click_here_to_see_all_the_submit_of_emergency_situations">Click here to see all the submit of emergency situations</string>
+    <string name="Admins_login" translatable="false">Admins login</string>
+    <string name="Submit_the_form_below_to_report_incident">Submit the form below to report a dangerous incident</string>
+    <string name="Select_a_type_of_dangerous_situation">Select a type of dangerous situation</string>
+    <string name="Description">Description</string>
+    <string name="Submit">Submit</string>
+    <string name="Show_most_important">Show most important</string>
+    <string name="Emergency_type">Emergency type:</string>
+    <string name="Descryption2">Description :</string>
+    <string name="location">Location:</string>
+    <string name="Timestamp">Timestamp:</string>
+
+
+    <string name="title_activity_login" translatable="false">LoginActivity</string>
+    <string name="prompt_email" translatable="false">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
